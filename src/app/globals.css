@@ -1,0 +1,340 @@
+@import "tailwindcss";
+
+/* next-themes applies the `dark` class to <html>. */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* -------------------------------------------------------------------------- */
+/*  Design tokens                                                             */
+/*                                                                            */
+/*  Raw values live here so every theme can override them in one place.       */
+/*  `@theme inline` below maps them to Tailwind utilities (bg-background,      */
+/*  text-muted-foreground, border-border, ...).                               */
+/* -------------------------------------------------------------------------- */
+
+:root {
+  color-scheme: light;
+
+  /* Semantic colors — light theme */
+  --background: #f6f8fc;
+  --foreground: #0b1220;
+  --card: #ffffff;
+  --card-foreground: #0b1220;
+  --primary: #2563eb;
+  --primary-foreground: #f8fafc;
+  --secondary: #eef2f9;
+  --secondary-foreground: #172033;
+  --muted: #f1f5fa;
+  --muted-foreground: #55647c;
+  --accent: #e0f2fe;
+  --accent-foreground: #075985;
+  --border: #e1e8f2;
+  --input: #d5dfec;
+  --ring: #2563eb;
+
+  /* Elevation */
+  --card-shadow:
+    0 1px 2px 0 rgb(11 18 32 / 0.05), 0 16px 40px -24px rgb(11 18 32 / 0.18);
+  --glow-shadow:
+    0 0 0 1px rgb(37 99 235 / 0.08), 0 18px 48px -28px rgb(37 99 235 / 0.4);
+
+  /* Motion and rhythm */
+  --duration-fast: 120ms;
+  --duration-base: 180ms;
+  --duration-slow: 320ms;
+  --section-spacing: clamp(4.5rem, 8vw, 7rem);
+}
+
+.dark {
+  color-scheme: dark;
+
+  /* Semantic colors — dark theme */
+  --background: #060a13;
+  --foreground: #e9effb;
+  --card: #0c1322;
+  --card-foreground: #e9effb;
+  --primary: #4f8cff;
+  --primary-foreground: #06101f;
+  --secondary: #131d30;
+  --secondary-foreground: #dae4f5;
+  --muted: #0f1828;
+  --muted-foreground: #93a4bf;
+  --accent: #0b2430;
+  --accent-foreground: #67e8f9;
+  --border: #1c2940;
+  --input: #223049;
+  --ring: #6aa2ff;
+
+  /* Elevation */
+  --card-shadow:
+    0 1px 0 0 rgb(255 255 255 / 0.03) inset,
+    0 20px 50px -32px rgb(0 0 0 / 0.9);
+  --glow-shadow:
+    0 0 0 1px rgb(79 140 255 / 0.14), 0 20px 60px -32px rgb(79 140 255 / 0.45);
+}
+
+/* -------------------------------------------------------------------------- */
+/*  Tailwind theme mapping                                                    */
+/* -------------------------------------------------------------------------- */
+
+@theme inline {
+  --font-sans:
+    var(--font-inter), ui-sans-serif, system-ui, -apple-system,
+    BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-mono:
+    ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+    "Courier New", monospace;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --shadow-card: var(--card-shadow);
+  --shadow-glow: var(--glow-shadow);
+
+  --default-transition-duration: var(--duration-base);
+  --default-transition-timing-function: var(--ease-standard);
+}
+
+@theme {
+  /* Typography scale: body copy, labels, captions, and headings. */
+  --text-caption: 0.75rem;
+  --text-caption--line-height: 1.5;
+  --text-caption--letter-spacing: 0.01em;
+  --text-caption--font-weight: 500;
+
+  --text-label: 0.875rem;
+  --text-label--line-height: 1.5;
+  --text-label--letter-spacing: 0.01em;
+  --text-label--font-weight: 500;
+
+  --text-body: 1rem;
+  --text-body--line-height: 1.7;
+  --text-body--font-weight: 400;
+
+  --text-body-lg: 1.125rem;
+  --text-body-lg--line-height: 1.7;
+  --text-body-lg--font-weight: 400;
+
+  --text-heading-3: 1.25rem;
+  --text-heading-3--line-height: 1.4;
+  --text-heading-3--letter-spacing: -0.01em;
+  --text-heading-3--font-weight: 600;
+
+  --text-heading-2: clamp(1.5rem, 1.25rem + 1vw, 1.875rem);
+  --text-heading-2--line-height: 1.3;
+  --text-heading-2--letter-spacing: -0.015em;
+  --text-heading-2--font-weight: 600;
+
+  --text-heading-1: clamp(1.875rem, 1.45rem + 2vw, 2.75rem);
+  --text-heading-1--line-height: 1.15;
+  --text-heading-1--letter-spacing: -0.022em;
+  --text-heading-1--font-weight: 600;
+
+  --text-display: clamp(2.25rem, 1.6rem + 3.2vw, 3.75rem);
+  --text-display--line-height: 1.05;
+  --text-display--letter-spacing: -0.03em;
+  --text-display--font-weight: 600;
+
+  /* Layout */
+  --container-content: 72rem;
+
+  /* Radii */
+  --radius-control: 0.5rem;
+  --radius-card: 0.875rem;
+  --radius-panel: 1.25rem;
+  --radius-pill: 9999px;
+
+  /* Easing */
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+  --ease-emphasized: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* -------------------------------------------------------------------------- */
+/*  Base styles                                                               */
+/* -------------------------------------------------------------------------- */
+
+@layer base {
+  html {
+    color-scheme: light;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  html.dark {
+    color-scheme: dark;
+  }
+
+  body {
+    @apply min-h-dvh bg-background font-sans text-body text-foreground antialiased;
+    transition:
+      background-color var(--duration-base) var(--ease-standard),
+      color var(--duration-base) var(--ease-standard);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-semibold text-balance;
+  }
+
+  p {
+    @apply text-pretty;
+  }
+
+  ::selection {
+    background-color: color-mix(in oklab, var(--primary) 32%, transparent);
+    color: var(--foreground);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+  }
+}
+
+/* Theme changes animate only paint-level properties, never layout. */
+@layer base {
+  @media (prefers-reduced-motion: no-preference) {
+    body *:not([data-no-theme-transition]) {
+      transition-property: background-color, border-color, color, fill, stroke;
+      transition-duration: var(--duration-base);
+      transition-timing-function: var(--ease-standard);
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  /* Reveal animated content immediately for reduced-motion visitors. */
+  [data-hero-reveal],
+  [data-about-reveal],
+  [data-skills-reveal],
+  [data-projects-reveal],
+  [data-github-reveal],
+  [data-contact-reveal],
+  [data-scroll-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  /* Stop the marquee and turn it into a static, wrapping list. */
+  .skill-marquee-track {
+    animation: none !important;
+    width: 100% !important;
+    transform: none !important;
+  }
+
+  .skill-marquee-group {
+    flex-wrap: wrap;
+    width: 100%;
+  }
+
+  .skill-marquee-group[data-clone="true"] {
+    display: none;
+  }
+
+  .skill-marquee {
+    mask-image: none !important;
+    -webkit-mask-image: none !important;
+  }
+
+  .loading-bar-indeterminate {
+    animation: none !important;
+    transform: none !important;
+    width: 100% !important;
+  }
+}
+
+/* -------------------------------------------------------------------------- */
+/*  Custom utilities                                                          */
+/* -------------------------------------------------------------------------- */
+
+/* Responsive vertical rhythm for page sections. */
+@utility section-y {
+  padding-block: var(--section-spacing);
+}
+
+/* -------------------------------------------------------------------------- */
+/*  Skills marquee                                                            */
+/* -------------------------------------------------------------------------- */
+
+@keyframes skill-marquee {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(var(--marquee-shift, -50%), 0, 0);
+  }
+}
+
+.skill-marquee {
+  overflow: hidden;
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 4rem,
+    black calc(100% - 4rem),
+    transparent
+  );
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 4rem,
+    black calc(100% - 4rem),
+    transparent
+  );
+}
+
+.skill-marquee-track {
+  animation: skill-marquee var(--marquee-duration, 34s) linear infinite;
+  animation-direction: var(--marquee-direction, normal);
+  will-change: transform;
+}
+
+.skill-marquee:hover .skill-marquee-track,
+.skill-marquee:focus-within .skill-marquee-track,
+.skill-marquee-board[data-paused="true"] .skill-marquee-track {
+  animation-play-state: paused;
+}
+
+/* -------------------------------------------------------------------------- */
+/*  Branded loading indicator                                                 */
+/* -------------------------------------------------------------------------- */
+
+@keyframes loading-bar {
+  0% {
+    transform: translateX(-100%);
+  }
+  50% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.loading-bar-indeterminate {
+  animation: loading-bar 1.6s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
